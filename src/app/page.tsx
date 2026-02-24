@@ -2,7 +2,8 @@ import { AppHeader } from "@/components/primal-image-tutorial/Header";
 import { StepCard } from "@/components/primal-image-tutorial/StepCard";
 import { LinkButton } from "@/components/primal-image-tutorial/LinkButton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DownloadCloud, ExternalLink, Github, ListChecks } from "lucide-react";
+import { DownloadCloud, ExternalLink, Github, ListChecks, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export interface TutorialStep {
   id: number;
@@ -25,7 +26,7 @@ const tutorialSteps: TutorialStep[] = [
 interface LinkItem {
   href: string;
   text: string;
-  icon: React.ElementType;
+  icon: typeof DownloadCloud;
 }
 
 const downloadLinks: LinkItem[] = [
@@ -84,6 +85,28 @@ export default function Home() {
             {externalLinks.map((link) => (
               <LinkButton key={link.href} href={link.href} text={link.text} icon={link.icon} variant="secondary" />
             ))}
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-xl border-primary/30 bg-gradient-to-br from-card to-primary/5">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold flex items-center">
+              <Sparkles className="mr-3 h-7 w-7 text-primary" />
+              AI Prompt Builder
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-muted-foreground">
+              Need help crafting the perfect image prompt? Our AI-powered prompt
+              builder helps you create detailed, optimized prompts for Bing Image
+              Creator and other AI image generators.
+            </p>
+            <Link href="/prompt-builder">
+              <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-medium transition-colors">
+                <Sparkles className="h-4 w-4" />
+                Open Prompt Builder
+              </span>
+            </Link>
           </CardContent>
         </Card>
 

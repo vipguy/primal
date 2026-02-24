@@ -1,7 +1,8 @@
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"; // Added Toaster for potential future use
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PrimalImageTutorial - Bing Image Automation Guide',
-  description: 'Learn how to automate Bing Image Creator with this step-by-step tutorial by PrimalCore. Works on mobile and PC.',
+  title: 'PrimalCore - Image Automation & AI Prompt Builder',
+  description: 'Learn how to automate Bing Image Creator and build powerful AI prompts with the PrimalCore suite. Works on mobile and PC.',
 };
 
 export default function RootLayout({
@@ -25,6 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://js.puter.com/v2/"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}>
         {children}
         <Toaster />
