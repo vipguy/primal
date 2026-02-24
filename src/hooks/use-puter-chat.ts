@@ -30,7 +30,7 @@ export function usePuterChat() {
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef(false);
 
-  const sendMessage = useCallback(async (userContent: string) => {
+  const sendMessage = useCallback(async (userContent: string, model?: string) => {
     if (!userContent.trim() || isLoading) return;
 
     setError(null);
@@ -69,7 +69,12 @@ export function usePuterChat() {
         }
       }
 
-      const response = await puter.ai.chat(conversationHistory);
+      const options: PuterAIChatOptions = {};
+      if (model) {
+        options.model = model;
+      }
+
+      const response = await puter.ai.chat(conversationHistory, options);
 
       if (abortRef.current) return;
 

@@ -29,6 +29,14 @@ interface PuterAIChatStreamResponse {
 
 type PuterAIChatStreamCallback = (response: PuterAIChatStreamResponse) => void;
 
+interface PuterAIModel {
+  id: string;
+  provider?: string;
+  name?: string;
+  aliases?: string[];
+  [key: string]: unknown;
+}
+
 interface PuterAI {
   chat(
     prompt: string | PuterAIChatMessage[],
@@ -42,6 +50,7 @@ interface PuterAI {
     prompt: string | PuterAIChatMessage[],
     options: PuterAIChatOptions & { stream: true },
   ): Promise<ReadableStream<PuterAIChatStreamResponse>>;
+  listModels(provider?: string | null): Promise<PuterAIModel[]>;
 }
 
 interface Puter {
